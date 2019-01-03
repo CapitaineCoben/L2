@@ -9,7 +9,7 @@ typedef   struct Set
           {
 	           int  longueur;
 	           float  tab[MaxSize];
-          }liste;
+          }Set;
 
 typedef  struct Set *  SET;
 	SET setVide();	/*Créer un set vide*/

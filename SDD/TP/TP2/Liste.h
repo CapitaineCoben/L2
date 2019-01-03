@@ -19,4 +19,4 @@ int Estvide();
 LISTE cons(int Elem, LISTE liste);
 LISTE fin(LISTE liste);
 float tete(LISTE liste);
-int taill(LISTE liste);
+int taille(LISTE liste);

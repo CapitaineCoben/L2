@@ -4,252 +4,112 @@
 
 int main(int argc, char *argv[])
 {
-	LISTE L;
-	int i, succes;
-	float a0;
-/* Allocation mémoire et vérification  */
-p  = malloc(sizeof( struct une_liste) );
-if(l=NULL)
-{
-	printf("Allocation impossible \n");
-	exit(EXIT_FAILURE);
-};#include <stdio.h>
-#include <stdlib.h>
-#include "polynome.c"
+	LISTE   l;
+	int i, succes, elem;
 
-int main(int argc, char *argv[])
-{
-	POLYNOME   p, p1;
-	int i, succes;
-	float a0;
 /* Allocation mémoire et vérification  */
-p  = malloc
-( sizeof( struct un_polynome) );
-p1 = malloc( sizeof(POLYNOME   p, p1; struct un_polynome) );
-if( p == NULL || p1 == NULL   )
+l  = malloc( sizeof( struct liste) );
+if( l == NULL)
 {
-	printf("Allocation impossible \n");
+	printf("Allocation imlossible \n");
 	exit(EXIT_FAILURE);
 };
 
-/* Vérifier l’implémentation du constructeur Nul()*/
-p = Nul() ;
-
 /* Initialiser l'indice succes*/
 succes= 1;
-/* Vérification avec l’accesseur estNul*/
-/* Vérifier la propriété :estNul:(p ) = True */
-if (!estNul(p))    succes = 0;
 
-/*Vérification avec l’accesseur Degre*/
-/* Vérifier la propriété :Degre(p ) = 0 */
-if (Degre(p ) != 0)   succes = 0;
+/* Vérifier l’Implémentation du constructeur listeVide()*/
+l = listeVide() ;
 
-/* Vérification avec l’accesseur Coefficient*/
-/*Vérifier la propriété:iCoefficient(p ,i) = 0 */
-for (i=0; i<MaxSize; i++)
-	if(Coefficient(p ,i)!= 0   ) succes =0;
+if(l->longueur != 0) succes = 0;
+for(i=0;  i<MaxSize;  i++)   if(l->tab[i] != 0) succes = 0;
+
 /* Bilan de la vérification */
-	if (succes!=1);
-	{
-		printf ("\n Implémentation incorrecte du constructeur Nul()");
-		printf("Interruption de la vérification: revoir l'implémentation du type abstrait \n");
-		exit(EXIT_FAILURE);
-	};
-
-/*Vérifierl’implémentation du constructeur "Construire(p1,a0)" */
-/* ne pas oublier de saisir le polynome p1  */
-printf("\n saisir un polynome: p1 est le premier argument");
-
-/*ne pas oublier de saisir le réel a0 */
-printf("\n saisir un reel: a0 est le second argument");
-
-/* Apres la saisie de p1 et a0,  appliquer "Construire" pour créer un polynome p  */
-p = Construire( p1,a0);
-
-/* réinitialiser la variable succes*/
-succes=0 ;
-
-/* Vérification avec l’accesseur estNul*/
-/* vérification de la propriété:estNul(p) = True estNul(p1) = True  a0 = 0 */
-if (estNul(p))
-if( estNul(p1)   &&  a0 == 0  ) succes=1;
-if(estNul(p1) && a0 == 0)
-if(estNul(p) )   succes = succes+1;
-
-/*Bilan de la vérification   */
-if(succes!= 2)
+if (succes!=1)
 {
-	printf( "\n Implémentation de Construire(estNul) incorrecte");
+	printf ("\n Implémentation incorrecte du constructeur listeVide()\n");
 	printf("Interruption de la vérification: revoir l'implémentation du type abstrait \n");
 	exit(EXIT_FAILURE);
 };
 
-/*Vérification avecl’accesseur Degre*/
-/* réinitialiser la variable «succès»*/
-
-succes =0;
-
-/* vérification de la propriété:  Degre(p) = 0 estNul(p1) = True    */
-if ( Degre(p) ==0 )    if ( estNul(p1)  )   succes =1;
-if (estNul(p1))   if (Degre(p) ==0) succes =  succes + 1;
-
-/* vérification de la propriété: Degre(p) = Degre(p1)+1 estNul(p1) = False  */
-if( Degre(p) == Degre(p1) +1  )  if (!estNul(p1))  succes =  succes + 1;
-if(!estNul(p1))
-if( Degre(p)== Degre(p1) +1 )
-succes =  succes + 1;
-/* Bilan de la vérification */
-if(succes!=4)
-	{
-		printf( "\n Implémentation de Construire(Degré) incorrecte");
-		printf("Interruption de la vérification: revoir l'implémentation du type 			abstrait\n");
-		exit(EXIT_FAILURE);
-};
-
-/* Vérification avec l’accesseur Coefficient*/
-/* réinitialiser la variable succès
-*/
-succes=1;
-
-/* vérification de la propriété: Coefficient(p,0)  = a0 */
-
-if(Coefficient(p, 0)!= a0)   succes = 0;
-
-/* vérification de la propriété:estNul(p1) = True  ( i> 0 Coefficient(p, i) =0    )  */
-if(estNul(p1))
-	for(i=1; i< MaxSize;  i++)
-		if (  Coefficient(p,i)  !=0  ) succes = 0;
-/* vérification de la propriété:estNul(p1) = False (i1 i Degre(p1)+1 Coefficient(p, i) =Coefficient(p1,i-1)) */
-
-if (!estNul(p1 ) )
-	for(i=1; i<= Degre(p1)+1 ; i++)  if( Coefficient(p, i) != Coefficient(p1,i-1)  ) succes 	= 0;
-/* vérification de la propriété:estNul(p1) = False  i> Degre(p1)+1 Coefficient(Construire( p1,a0), i) = 0  */
-
-if(!estNul(p1 ) )
-	for(i=Degre(p1)+2;  i<= MaxSize ; i++)
-if ( Coefficient(p, i) != 0  ) succes = 0;
-
-/* Bilan de la verification */
-if(succes==0)
-	{
-		printf( "\n Implémentation de Construire (Coefficient) incorrecte");
-		printf("Interruption de la vérification: revoir l'implémentation du type 			abstrait\n");
-		exit(EXIT_FAILURE);
-};
-printf("L'implementation du type abstrait est vérifiée");
-printf("Fin normale de la vérification de l'implémentation du type abstrait");
-return EXIT_SUCCESS;
-}
-
-
-
-/* Vérifier l’implémentation du constructeur Nul()*/
-p = Nul() ;
-
-/* Initialiser l'indice succes*/
+/* réinitialiser l'indice succes*/
 succes= 1;
-/* Vérification avec l’accesseur estNul*/
-/* Vérifier la propriété :estNul:(p ) = True */
-if (!estNul(p))    succes = 0;
 
-/*Vérification avec l’accesseur Degre*/
-/* Vérifier la propriété :Degre(p ) = 0 */
-if (Degre(p ) != 0)   succes = 0;
+/* Vérification du constructeur EstVide*/
+if (!EstVide(l))    succes = 0;
 
-/* Vérification avec l’accesseur Coefficient*/
-/*Vérifier la propriété:iCoefficient(p ,i) = 0 */
-for (i=0; i<MaxSize; i++)
-	if(Coefficient(p ,i)!= 0   ) succes =0;
 /* Bilan de la vérification */
-	if (succes!=1);
-	{
-		printf ("\n Implémentation incorrecte du constructeur Nul()");
-		printf("Interruption de la vérification: revoir l'implémentation du type abstrait \n");
-		exit(EXIT_FAILURE);
-	};
-
-/*Vérifierl’implémentation du constructeur "Construire(p1,a0)" */
-/* ne pas oublier de saisir le polynome p1  */
-printf("\n saisir un polynome: p1 est le premier argument");
-
-/*ne pas oublier de saisir le réel a0 */
-printf("\n saisir un reel: a0 est le second argument");
-
-/* Apres la saisie de p1 et a0,  appliquer "Construire" pour créer un polynome p  */
-p = Construire( p1,a0);
-
-/* réinitialiser la variable succes*/
-succes=0 ;
-
-/* Vérification avec l’accesseur estNul*/
-/* vérification de la propriété:estNul(p) = True estNul(p1) = True  a0 = 0 */
-if (estNul(p))
-if( estNul(p1)   &&  a0 == 0  ) succes=1;
-if(estNul(p1) && a0 == 0)
-if(estNul(p) )   succes = succes+1;
-
-/*Bilan de la vérification   */
-if(succes!= 2)
+if (succes!=1)
 {
-	printf( "\n Implémentation de Construire(estNul) incorrecte");
+	printf ("\n Implémentation incorrecte de l'accesseur EstVide()\n");
 	printf("Interruption de la vérification: revoir l'implémentation du type abstrait \n");
 	exit(EXIT_FAILURE);
 };
 
-/*Vérification avecl’accesseur Degre*/
-/* réinitialiser la variable «succès»*/
+/* réinitialiser l'indice succes*/
+succes = 1;
 
-succes =0;
+/* Initialiser la variable elem*/
+elem = 1;
 
-/* vérification de la propriété:  Degre(p) = 0 estNul(p1) = True    */
-if ( Degre(p) ==0 )    if ( estNul(p1)  )   succes =1;
-if (estNul(p1))   if (Degre(p) ==0) succes =  succes + 1;
+/* Vérification avec l’accesseur consListe*/
+l = consListe(elem,l);
 
-/* vérification de la propriété: Degre(p) = Degre(p1)+1 estNul(p1) = False  */
-if( Degre(p) == Degre(p1) +1  )  if (!estNul(p1))  succes =  succes + 1;
-if(!estNul(p1))
-if( Degre(p)== Degre(p1) +1 )
-succes =  succes + 1;
+if (EstVide(l))		succes = 0;
+if(l->tab[l->longueur-1] != elem) 	succes = 0;
+
 /* Bilan de la vérification */
-if(succes!=4)
+	if (succes!=1)
 	{
-		printf( "\n Implémentation de Construire(Degré) incorrecte");
-		printf("Interruption de la vérification: revoir l'implémentation du type 			abstrait\n");
+		printf ("\n Implémentation incorrecte de l'accesseur consListe()\n");
+		printf("Interruption de la vérification: revoir l'implémentation du type abstrait \n");
 		exit(EXIT_FAILURE);
+	};
+
+/* réinitialiser l'indice succes*/
+succes = 1;
+
+/* Vérification avec l’accesseur tete*/
+if (tete(l) != elem) succes = 0;
+
+/* Bilan de la vérification */
+if (succes!=1)
+{
+	printf ("\n Implémentation incorrecte de l'accesseur tete()\n");
+	printf("Interruption de la vérification: revoir l'implémentation du type abstrait \n");
+	exit(EXIT_FAILURE);
 };
 
-/* Vérification avec l’accesseur Coefficient*/
-/* réinitialiser la variable succès
-*/
-succes=1;
+/* réinitialiser l'indice succes*/
+succes = 1;
 
-/* vérification de la propriété: Coefficient(p,0)  = a0 */
+/* Vérification avec l’accesseur taille*/
+if (taille(l) != l->longueur) succes = 0;
 
-if(Coefficient(p, 0)!= a0)   succes = 0;
-
-/* vérification de la propriété:estNul(p1) = True  ( i> 0 Coefficient(p, i) =0    )  */
-if(estNul(p1))
-	for(i=1; i< MaxSize;  i++)
-		if (  Coefficient(p,i)  !=0  ) succes = 0;
-/* vérification de la propriété:estNul(p1) = False (i1 i Degre(p1)+1 Coefficient(p, i) =Coefficient(p1,i-1)) */
-
-if (!estNul(p1 ) )
-	for(i=1; i<= Degre(p1)+1 ; i++)  if( Coefficient(p, i) != Coefficient(p1,i-1)  ) succes 	= 0;
-/* vérification de la propriété:estNul(p1) = False  i> Degre(p1)+1 Coefficient(Construire( p1,a0), i) = 0  */
-
-if(!estNul(p1 ) )
-	for(i=Degre(p1)+2;  i<= MaxSize ; i++)
-if ( Coefficient(p, i) != 0  ) succes = 0;
-
-/* Bilan de la verification */
-if(succes==0)
-	{
-		printf( "\n Implémentation de Construire (Coefficient) incorrecte");
-		printf("Interruption de la vérification: revoir l'implémentation du type 			abstrait\n");
-		exit(EXIT_FAILURE);
+/* Bilan de la vérification */
+if (succes!=1)
+{
+	printf ("\n Implémentation incorrecte de l'accesseur taille()\n");
+	printf("Interruption de la vérification: revoir l'implémentation du type abstrait \n");
+	exit(EXIT_FAILURE);
 };
-printf("L'implementation du type abstrait est vérifiée");
-printf("Fin normale de la vérification de l'implémentation du type abstrait");
+
+/* réinitialiser l'indice succes*/
+succes = 1;
+
+/* Vérification avec l’accesseur finListe*/
+l = finListe(l);
+if (!EstVide(l)) succes = 0;
+
+/* Bilan de la vérification */
+if (succes!=1)
+{
+	printf ("\n Imppémentation incorrecte de l'accesseur finListe()\n");
+	printf("Interruption de la vérification: revoir l'implémentation du type abstrait \n");
+	exit(EXIT_FAILURE);
+};
+
+printf("L'implementation du type abstrait est vérifiée\n");
+printf("Fin normale de la vérification de l'implémentation du type abstrait\n");
 return EXIT_SUCCESS;
 }

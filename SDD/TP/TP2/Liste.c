@@ -25,7 +25,7 @@ float tete(LISTE l){
     return(l->tab[0]);
 }
 
-float taille(LISTE l){
+int taille(LISTE l){
   return(l->longeur);
 }
 
@@ -41,7 +41,7 @@ int main() {
     printf("%lf\n",liste->tab[i]);
   }
   printf("%f\n", tete(liste));
-  printf("%f\n", taille(liste));
+  printf("%d\n", taille(liste));
 }
 
 
