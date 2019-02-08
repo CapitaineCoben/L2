@@ -1,0 +1,32 @@
+Module 1
+Variables aléatoires et discretes
+
+1.DéfinitionAléatoire : sujet au hasard
+
+une variable aléatoire (v,a) est une quantité dont la valeur est sujette au hasard. elle peut etre :
+  - discrete (valeur entiere : p.e 0,1,2 ....)
+  -continue (toutes valeurs décimales)
+
+dans ce module on s'interesse au v.a discretes
+
+2.Exemple jet de dé - pas forcement équillibré
+
+dé a 6 faces numéroté de 1 a 6
+  taille de l'échantillon est le nombre de lancé (indépendant des valeurs possibles)
+  X(variable aléatoire) est discrete et est le résultat du jet de dé a 6 faces.
+  on pourrait remplacer X par Y,D,JD,
+  l'enssemble des valeurs possibles est noté VP:
+  VP={1,2,3,4,5,6}  VP contient 6 éléments
+  un échantillon est un enssemble de tirage de la variable X, un vecteur de valeurs X qu'on notera
+    ex : XV(valeurs de X) = {4,2}   ou    X1 = 4, X2 = 2
+    taille echantilon = 2
+
+3.Histogrammes (statistique descriptive)
+  si 7 jets de dé produisent l'échantillon Xv={2,5,2,2,3,3,1}
+  alors l"histogramme des fréquences est une représentaition graphique du nombre de fois que chaqunes
+  des valeurs possibles apparait:
+
+  frequence relative on divise les fréquences par la taille de l'échantillon
+
+  air rectangle = hauteur * base
+4.probabilitées attachées aux valeurs possibles

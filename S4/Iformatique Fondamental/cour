@@ -1,0 +1,37 @@
+I - calculabilité et limitations des algos "machine de turing"
+II - terminaison des algos
+III - correction des algos
+IV - complexité des algos - Classe de complexité
+
+------------------------------------------------------CHAPITRE I -----------------------------------------------------------------------------
+I - calculabilité et limitations des algos "machine de turing"
+------------------------------------------------------PRTIE I --------------------------------------------------------------------------------
+I - Introduction
+II - la these de Church-turing
+III - La machine de turing
+IV - calculabilité et Décidabilité
+-------------------------------------------------------INTRODUCTION---------------------------------------------------------------------------
+La theorie de la calculabilité permet au developpeur de comprendre :
+  - la puissance des programmes informatiques
+  -et leurs limitations
+On y prouve que certains problemes :
+  - peuvent se résoudre informatiquement
+  - ne peuvent pas etre résoluts de cette maniere
+En pratique on peut se dire qu'en informatique, on s'interresse a résoudre des problemes, en les programmants a l'aide d'algorithmes
+Définition de Gödel
+Définition de Church
+  lambda calcul :
+    lambda ( cariables liées) * (corps)
+      exemple :
+    Définition de turing:
+      Un algo est un ensemble d'instructions pour une machine hypotétique : la machine de turing
+        hypotétique : n'existe pas mais respecte un certains nombre de propritétés.
+description intuitive :
+  - unité centrale
+  - memoire infinie ( bande, ruban)
+  -tête de lecture
+  -programmes
+pour chaques etat q la fonction precise selon le symbole s sous la tete de lecture
+souvent on construit une machine de turing sous sa forme canonique (alphabet restraint a 3 symboles 0,1 et blanc)
+un procesus est un programme en cours d'execution
+un programme manipule des variables
