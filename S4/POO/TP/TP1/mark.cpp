@@ -6,7 +6,6 @@ int main()
 		scanf("%d",&note);
 	}while(note < 0 || note > 20);
 
-	if (note < 0 || note > 20) {printf("note invalive, ");}
 	if (note <= 10 and note >=0) {printf("failing\n");}
 	if (note <= 12 and note >10) {printf("satisfactory\n");}
 	if (note <= 16 and note >12) {printf("good\n");}
