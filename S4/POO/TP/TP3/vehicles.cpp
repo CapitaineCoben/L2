@@ -13,7 +13,7 @@ class vehicles_t{
   bool move(float km = 1){
     if (km>0 and (km*this->fuel_cons/100)<this->fuel) {
       this->fuel -= (km*this->fuel_cons/100);
-      nkm += km;
+      vehicles_t::nkm += km;
       printf("car moved (%.2f km).\n",km);
       return true;
     }else{
@@ -67,8 +67,12 @@ class car_t : public vehicles_t{
       printf("unable to move the car (%.2f)\n", km);
       return false;
     }else{
-      nkm += km;
-      return(vehicles_t::move(km));
+      if ((vehicles_t::move(km))) {
+        car_t::nkm += km;
+        return true;
+      }else{
+        return false;
+      }
     }
   }
   public :void print(){
@@ -76,6 +80,10 @@ class car_t : public vehicles_t{
   }
 };
 
+
+
+float vehicles_t::nkm = 0;
+float car_t::nkm = 0;
 int main(int argc, char const *argv[]) {
   car_t mca((char*)"Mercedes A-Class",1.7,11,2.10,0);
   car_t bmw((char*)"BMW X4",57.2,11.30,65,0);
