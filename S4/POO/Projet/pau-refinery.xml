@@ -1,0 +1,27 @@
+<refinery name="Pau refinery">
+        <contact>
+                <address>
+                        <street>1 rue Richelieu</street>
+                        <postal-code>64000</postal-code>
+                        <city>Pau</city>
+                </address>
+                <mail>pau-refinery@pau.fr</mail>
+                <web>http://pau-refinery.pau.fr/</web>
+        </contact>
+        <days>
+                <day>Monday</day>
+                <day>Tuesday</day>
+                <day>Wednesday</day>
+                <day>Thursday</day>
+        </days>
+        <metals>
+                <metal name="Gold">
+                        <buy-price>100.10</buy-price>
+                        <demand-quantity>1000.11</demand-quantity>
+                </metal>
+                <metal name="Silver">
+                        <buy-price>50.10</buy-price>
+                        <demand-quantity>500.11</demand-quantity>
+                </metal>
+        </metals>
+</refinery>
