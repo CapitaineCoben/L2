@@ -7,8 +7,7 @@
 /**
 * A copper metal.
 */
-class copper_t: public metal_t
-{
+class copper_t: public metal_t{
 public:
 /**
 * Constructs a new copper metal.
