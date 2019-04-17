@@ -12,13 +12,7 @@ using namespace std; // for string
 */
 enum day_t
 {
-monday,
-tuesday,
-wednesday,
-thursday,
-friday,
-saturday,
-sunday
+monday,tuesday,wednesday,thursday,friday,saturday,sunday
 };
 /**
 * A refinery.

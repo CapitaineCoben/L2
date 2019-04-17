@@ -1,6 +1,6 @@
 #include <iostream>
-#include "metal.h"
 #include <cstring>
+#include "metal.h"
 using namespace std;
 
 metal_t::metal_t(){
@@ -27,7 +27,7 @@ string metal_t::get_symbol()const{
 }
 
 void metal_t::handle_m() const{
-  cout <<"(buy-price: "<<this->buy_price<<" $, demand-quantity: "<<this->demand_quantity<<" t, name: "<<this->name<<", symbol: "<<this->symbol<<")";
+  cout << * this;
 }
 
 void metal_t::handle_mbp(float price) const{
@@ -91,17 +91,17 @@ void metal_t::handle_mdqlt(float qty) const{
 }
 
 void metal_t::handle_mn(string name) const{
-  if (strstr(this->name,name)==this->name) {
+  if (this->name == name) {
     this->handle_m();
   }
 }
 
 
-// void metal_t::handle_ms(string symbol) const{
-//   if ((strstr(this->symbol,symbol)==this->symbol)) {
-//     this->handle_m();
-//   }
-// }
+void metal_t::handle_ms(string symbol) const{
+  if (this->symbol == symbol) {
+    this->handle_m();
+  }
+}
 
 void metal_t::set_buy_price(float buy_price){
   this->buy_price = buy_price;
@@ -111,9 +111,7 @@ void metal_t::set_demand_quantity(float demand_quantity){
   this->demand_quantity = demand_quantity;
 }
 
-
-
-int main(int argc, char const *argv[]) {
-
-  return 0;
+ostream& operator<<(ostream &os, const metal_t &metal){
+  os << "(buy-price: "<<metal.get_buy_price()<<" $, demand-quantity: "<<metal.get_demand_quantity()<<" t, name: "<<metal.get_name()<<", symbol: "<<metal.get_symbol()<<")";
+  return os;
 }
