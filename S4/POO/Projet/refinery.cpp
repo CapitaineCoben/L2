@@ -52,7 +52,7 @@ string refinery_t::get_web() const{
 }
 
 void refinery_t::handle_addr() const{
-  cout << this->get_name() << "," << this->get_street() << "," << get_postal_code() << "," << get_city() << endl;
+  cout << this->get_name() << ", " << this->get_street() << ", " << get_postal_code() << ", " << get_city() << endl;
 }
 
 void refinery_t::handle_contact() const{
@@ -188,31 +188,28 @@ void refinery_t::set_web(string web){
 }
 
 ostream &operator<<(ostream &os, const refinery_t &refinery){
-  os << "(City : " << refinery.get_city() << ", Days : (";
+  os << "(city: " << refinery.get_city() << ", days: (";
   for (int i = 0; i < (int) refinery.days_size(); i++) {
     switch (refinery.days_at(i)) {
-      case 0: os << (" day: monday");break;
-			case 1: os << (" day: tuesday") ;break;
-			case 2: os << (" day: wednesday") ;break;
-			case 3: os << (" day: thursday") ;break;
-			case 4: os << (" day: friday") ;break;
-			case 5: os << (" day: saturday") ;break;
-			case 6: os << (" day: sunday") ;break;
+      case 0: os << ("day: Monday");break;
+			case 1: os << ("day: Tuesday") ;break;
+			case 2: os << ("day: Wednesday") ;break;
+			case 3: os << ("day: Thursday") ;break;
+			case 4: os << ("day: Friday") ;break;
+			case 5: os << ("day: Saturday") ;break;
+			case 6: os << ("day: Sunday") ;break;
     }
-    if(i+1 == (int) refinery.days_size()){os << ")";}else{os << ",";}
+    if(i+1 == (int) refinery.days_size()){os << ")";}else{os << ", ";}
   }
-  os << " mail : " << refinery.get_mail() << " , metals : ";
+  os << ", mail: " << refinery.get_mail() << ", metals: (";
   for (int i = 0; i < (int) refinery.metals_size(); i++) {
-    //((buy-price: 100.1 $, demand-quantity: 1000.11 t, name: Gold, symbol:Au),
-    os << "(buy-price: " << refinery.metals_at(i).get_buy_price();
-    os << " $, demand-quantity: " << refinery.metals_at(i).get_demand_quantity();
-    os << " t, name: " << refinery.metals_at(i).get_name();
-    os << ", symbol:" << refinery.metals_at(i).get_symbol() << "),";
+    refinery.metals_at(i).handle_m();
+    if(i+1 == (int) refinery.metals_size()){os << ")";}else{os << ", ";}
   }
-  os << " name : " << refinery.get_name();
-  os << ", postal_code : " << refinery.get_postal_code();
-  os << ", street : " << refinery.get_street();
-  os << ", web : " << refinery.get_web() << ")" << endl;
+  os << ", name: " << refinery.get_name();
+  os << ", postal_code: " << refinery.get_postal_code();
+  os << ", street: " << refinery.get_street();
+  os << ", web: " << refinery.get_web() << ")" << endl;
 
   return os;
 }

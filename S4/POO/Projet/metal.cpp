@@ -27,7 +27,7 @@ string metal_t::get_symbol()const{
 }
 
 void metal_t::handle_m() const{
-  cout << * this;
+  cout << * this << endl;
 }
 
 void metal_t::handle_mbp(float price) const{
@@ -37,25 +37,25 @@ void metal_t::handle_mbp(float price) const{
 }
 
 void metal_t::handle_mbpge(float price) const{
-  if (price >= this->buy_price) {
-    this->handle_m();
-  }
-}
-
-void metal_t::handle_mbpgt(float price) const{
-  if (price > this->buy_price) {
-    this->handle_m();
-  }
-}
-
-void metal_t::handle_mbple(float price) const{
   if (price <= this->buy_price) {
     this->handle_m();
   }
 }
 
-void metal_t::handle_mbplt(float price) const{
+void metal_t::handle_mbpgt(float price) const{
   if (price < this->buy_price) {
+    this->handle_m();
+  }
+}
+
+void metal_t::handle_mbple(float price) const{
+  if (price >= this->buy_price) {
+    this->handle_m();
+  }
+}
+
+void metal_t::handle_mbplt(float price) const{
+  if (price > this->buy_price) {
     this->handle_m();
   }
 }
@@ -67,25 +67,25 @@ void metal_t::handle_mdq(float qty) const{
 }
 
 void metal_t::handle_mdqge(float qty) const{
-  if (qty >= this->demand_quantity) {
-    this->handle_m();
-  }
-}
-
-void metal_t::handle_mdqgt(float qty) const{
-  if (qty > this->demand_quantity) {
-    this->handle_m();
-  }
-}
-
-void metal_t::handle_mdqle(float qty) const{
   if (qty <= this->demand_quantity) {
     this->handle_m();
   }
 }
 
-void metal_t::handle_mdqlt(float qty) const{
+void metal_t::handle_mdqgt(float qty) const{
   if (qty < this->demand_quantity) {
+    this->handle_m();
+  }
+}
+
+void metal_t::handle_mdqle(float qty) const{
+  if (qty >= this->demand_quantity) {
+    this->handle_m();
+  }
+}
+
+void metal_t::handle_mdqlt(float qty) const{
+  if (qty > this->demand_quantity) {
     this->handle_m();
   }
 }

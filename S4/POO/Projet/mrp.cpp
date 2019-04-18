@@ -2,6 +2,7 @@
 #include <cstring>
 #include <vector>
 #include <stdlib.h>
+#include <stdio.h>
 #include "pugixml.hpp"
 #include "pugiconfig.hpp"
 #include "refinery.h"
@@ -14,6 +15,36 @@
 using namespace std;
 using namespace pugi;
 
+void print_help(){
+  cout << "addr: prints the refinery address" << endl
+       << "contact: prints the refinery contact information" << endl
+       << "help: prints this help" << endl
+       << "m: prints the refinery metals" << endl
+       << "mail: prints the refinery mail address" << endl
+       << "mbp PRICE: prints the refinery metals with the buy price equal to PRICE" << endl
+       << "mbpge PRICE: prints the refinery metals with the buy price greater than or equal to PRICE" << endl
+       << "mbpgt PRICE: prints the refinery metals with the buy price greater than PRICE" << endl
+       << "mbple PRICE: prints the refinery metals with the buy price less than or equal to PRICE" << endl
+       << "mbplt PRICE: prints the refinery metals with the buy price less than PRICE" << endl
+       << "mdq QTY: prints the refinery metals with the demand quantity equal to QTY" << endl
+       << "mdqge QTY: prints the refinery metals with the demand quantity greater than or equal to QTY" << endl
+       << "mdqgt QTY: prints the refinery metals with the demand quantity greater than QTY" << endl
+       << "mdqle QTY: prints the refinery metals with the demand quantity less than or equal to QTY" << endl
+       << "mdqlt QTY: prints the refinery metals with the demand quantity less than QTY" << endl
+       << "mn NAME: prints the refinery metals with the name containing NAME" << endl
+       << "ms SYMBOL: prints the refinery metals with the symbol containing SYMBOL" << endl
+       << "quit: quits MRP" << endl
+       << "r: prints the refinery information" << endl
+       << "version: prints the MRP version" << endl
+       << "web: prints the refinery web address" << endl;
+}
+
+void print_version(){
+  cout << "MRP (Metal Refinery Program) 20190417" << endl << endl
+       << "Copyright (C) 2019 Daspet Romain and Vontolkacz Karol." << endl << endl
+       << "Written by Daspet Romain <daspet.romain@univ-pau.fr> and Vontolkacz Karol <vontolkacz.karol@univ-pau.fr>." << endl;
+}
+
 int main(int argc, char const *argv[]) {
   xml_document xmlDoc;
   xml_node xmlNode;
@@ -23,14 +54,14 @@ int main(int argc, char const *argv[]) {
 
 // Vérification du bon nombre d'arguments
   if (argc != 2) {
-    cerr << "invalid number of arguments" << endl;
+    cerr << argv[0] << ": invalid number of arguments" << endl;
     return 1;
   }
 
 //génération du document a parti du xml et vérification
   xml_parse_result result = xmlDoc.load_file(argv[1]);
   if (result.description() !=(string) "No error") {
-    cerr << "unable to parse the document" << endl;
+    cerr << argv[0] << ": unable to parse the document" << endl;
     return 1;
   }
 
@@ -96,11 +127,90 @@ int main(int argc, char const *argv[]) {
     }
   }
 
-
-pau_refinery.handle_r();
-
 //gestion des commandes utilisateur
+char* saisie = new char;
+do {
+  cout << "MRP> ";
+  fgets(saisie,100,stdin);
+  if (strlen(saisie) >= 18) {
+    cerr << "too many characters for the command" << endl;
+  }else {
+      if (strstr(saisie,"addr\n")) { pau_refinery.handle_addr();
+      } else if (strstr(saisie,"contact\n")) { pau_refinery.handle_contact();
+      } else if (strstr(saisie,"help\n")) { print_help();
+      } else if (strstr(saisie,"m\n")) { pau_refinery.handle_m();
+      } else if (strstr(saisie,"mail\n")) { pau_refinery.handle_mail();
 
+      } else if (strstr(saisie,"mbp")) {
+        if (strstr(saisie,"mbpge")) {
+          if (strlen(saisie) <= 7) {cerr << argv[0] << ": missing parameter for the mbpge command" << endl;
+          }else if(strtof(&saisie[5],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mbp command" << endl;
+          }else {pau_refinery.handle_mbpge(strtof(&saisie[5],NULL));}
+
+        } else if (strstr(saisie,"mbpgt")) {
+          if (strlen(saisie) <= 6) {cerr << argv[0] << ": missing parameter for the mbpgt command" << endl;
+          }else if(strtof(&saisie[5],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mbp command" << endl;
+          }else {pau_refinery.handle_mbpgt(strtof(&saisie[5],NULL));}
+
+        } else if (strstr(saisie,"mbple")) {
+          if (strlen(saisie) <= 6) {cerr << argv[0] << ": missing parameter for the mbple command" << endl;
+          }else if(strtof(&saisie[5],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mbp command" << endl;
+          }else {pau_refinery.handle_mbple(strtof(&saisie[5],NULL));}
+
+        } else if (strstr(saisie,"mbplt")) {
+          if (strlen(saisie) <= 6) {cerr << argv[0] << ": missing parameter for the mbplt command" << endl;
+          }else if(strtof(&saisie[5],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mbp command" << endl;
+          }else {pau_refinery.handle_mbplt(strtof(&saisie[5],NULL));}
+
+        }else{
+          if (strlen(saisie) <= 5) {cerr << argv[0] << ": missing parameter for the mbp command" << endl;
+          }else if(strtof(&saisie[3],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mbp command" << endl;
+          }else {pau_refinery.handle_mbp(strtof(&saisie[3],NULL));}
+        }
+      }  else if (strstr(saisie,"mdq")) {
+        if (strstr(saisie,"mdqge")) {
+          if (strlen(saisie) <= 7) {cerr << argv[0] << ": missing parameter for the mdqge command" << endl;
+          }else if(strtof(&saisie[5],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mdq command" << endl;
+          }else {pau_refinery.handle_mdqge(strtof(&saisie[5],NULL));}
+
+        } else if (strstr(saisie,"mdqgt")) {
+          if (strlen(saisie) <= 6) {cerr << argv[0] << ": missing parameter for the mdqgt command" << endl;
+          }else if(strtof(&saisie[5],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mdq command" << endl;
+          }else {pau_refinery.handle_mdqgt(strtof(&saisie[5],NULL));}
+
+        } else if (strstr(saisie,"mdqle")) {
+          if (strlen(saisie) <= 6) {cerr << argv[0] << ": missing parameter for the mdqle command" << endl;
+          }else if(strtof(&saisie[5],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mdq command" << endl;
+          }else {pau_refinery.handle_mdqle(strtof(&saisie[5],NULL));}
+
+        } else if (strstr(saisie,"mdqlt")) {
+          if (strlen(saisie) <= 6) {cerr << argv[0] << ": missing parameter for the mdqlt command" << endl;
+          }else if(strtof(&saisie[5],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mdq command" << endl;
+          }else {pau_refinery.handle_mdqlt(strtof(&saisie[5],NULL));}
+
+        }else{
+          if (strlen(saisie) <= 5) {cerr << argv[0] << ": missing parameter for the mdq command" << endl;
+          }else if(strtof(&saisie[3],NULL) == 0){cerr << argv[0] << ": invalid parameter for the mdq command" << endl;
+          }else {pau_refinery.handle_mdq(strtof(&saisie[3],NULL));}
+        }
+
+      } else if (strstr(saisie,"mn")) {
+        if (strlen(saisie) <= 4) {cerr << argv[0] << ": missing parameter for the mn command" << endl;
+      }else if(strtof(&saisie[3],NULL) != 0){cerr << argv[0] << ": invalid parameter for the mdq command" << endl;
+    }else {saisie[strlen(saisie)-1] = '\0'; pau_refinery.handle_mn(&saisie[3]);}
+
+      } else if (strstr(saisie,"ms")) {
+        if (strlen(saisie) <= 4) {cerr << argv[0] << ": missing parameter for the ms command" << endl;
+      }else if(strtof(&saisie[3],NULL) != 0){cerr << argv[0] << ": invalid parameter for the mdq command" << endl;
+    }else {saisie[strlen(saisie)-1] = '\0'; pau_refinery.handle_ms(&saisie[3]);}
+
+      } else if (strstr(saisie,"r\n")) { pau_refinery.handle_r();
+      } else if (strstr(saisie,"version\n")) { print_version();
+      } else if (strstr(saisie,"web\n")) { pau_refinery.handle_web();
+      }else if (strstr(saisie,"quit\n")) {
+      }else {cerr << argv[0] << ": invalid command"<< endl;}
+  }
+} while(strcmp(saisie,"quit\n"));
 
 
 
